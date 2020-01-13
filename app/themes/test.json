@@ -1,0 +1,10 @@
+{
+  "fontFamily": "Montserrat, sans-serif",
+  "palette": {
+    "primary1Color": "#f9a02c",
+    "primary2Color": "#d0661c",
+    "primary3Color": "#2d3764",
+    "accent1Color": "#d0661c",
+    "pickerHeaderColor": "#f9a02c"
+  }
+}
