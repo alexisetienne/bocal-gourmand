@@ -25,6 +25,10 @@ const GlobalStyle = createGlobalStyle`
     font-family: Georgia, Times, 'Times New Roman', serif;
     line-height: 1.5em;
   }
+  
+  .MuiFormLabel-root {
+  color: #ffffff;
+  }
 `;
 
 export default GlobalStyle;

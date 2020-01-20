@@ -1,7 +1,7 @@
 import { createMuiTheme } from '@material-ui/core/styles';
 // import { common } from '@material-ui/core/colors';
 const inputText = '#000000';
-const primaryColorHex = '#ff9955';
+const primaryColorHex = '#d3a476';
 const primaryColorRGB = '0, 167, 159';
 const secondaryColorHex = '#ffffff';
 const secondaryColorRGB = '255, 255, 255';
@@ -14,7 +14,7 @@ const theme = createMuiTheme({
     useNextVariants: true,
   },
 }); // get default theme to access breakpoints
-const themeImmofix = createMuiTheme({
+const themeBocalGourmand = createMuiTheme({
   palette: {
     type: 'light',
     primary: { main: primaryColorHex },
@@ -401,6 +401,7 @@ const themeImmofix = createMuiTheme({
     MuiCardContent: {
       root: {
         padding: '36px',
+        minHeight: 240,
         '&:last-child': 0,
       },
     },
@@ -455,4 +456,4 @@ const themeImmofix = createMuiTheme({
   },
 });
 
-export default themeImmofix;
+export default themeBocalGourmand;

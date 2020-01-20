@@ -13,8 +13,7 @@ import { NavLink as RouterLink } from 'react-router-dom';
 const styles = theme => ({
   card: {
     maxWidth: 345,
-    margin: '80px',
-    minHeight: 407,
+    margin: '10px',
     [theme.breakpoints.down('sm')]: {
       margin: '20px',
     },
@@ -32,67 +31,45 @@ const styles = theme => ({
       filter: 'grayscale(60%)',
     },
   },
-  cardFont: {
-    fontSize: '22px',
-    fontFamily: 'Montserrat, sans-serif',
-    fontWeight: 'bold',
-  },
-  cardFontText: {
+  itemLegend: {
     fontSize: '14px',
     fontFamily: 'Cairo, sans-serif',
     fontWeight: 'bold',
+    color: '#ffffff',
+    padding: '10px',
   },
 });
 
-class CardServices extends React.PureComponent {
+class CardMenuItem extends React.PureComponent {
   render() {
-    const { classes, img, title, text } = this.props;
+    const { classes, img, title } = this.props;
 
     return (
       <Card className={classes.card}>
         <CardMedia
           component="img"
-          alt="Contemplative Reptile"
-          height="140"
+          alt="menu de la semaine"
+          height="240"
           image={img}
           title="Contemplative Reptile"
         />
-        <CardContent style={{ minHeight: 220 }}>
+        <CardContent style={{ backgroundColor: '#050f2c' }}>
           <Typography
             gutterBottom
-            variant="h5"
-            component="h2"
-            className={classes.cardFont}
+            component="span"
+            className={classes.itemLegend}
           >
             {title}
           </Typography>
-          <Typography
-            variant="body2"
-            color="textSecondary"
-            component="p"
-            className={classes.cardFontText}
-          >
-            {text}
-          </Typography>
         </CardContent>
-        <CardActions style={{ justifyContent: 'center' }}>
-          <Link
-            className={classes.buttonNav}
-            component={RouterLink}
-            to="/contact"
-          >
-            CONTACT
-          </Link>
-        </CardActions>
       </Card>
     );
   }
 }
-CardServices.propTypes = {
+CardMenuItem.propTypes = {
   img: PropTypes.string.isRequired,
   title: PropTypes.string.isRequired,
-  text: PropTypes.string.isRequired,
   classes: PropTypes.object.isRequired,
 };
 
-export default withStyles(styles)(CardServices);
+export default withStyles(styles)(CardMenuItem);

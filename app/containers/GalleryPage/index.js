@@ -6,17 +6,21 @@
  */
 
 import React from 'react';
-import {Helmet} from "react-helmet";
-import { makeStyles } from '@material-ui/core/styles';
+import PropTypes from 'prop-types';
+import { Helmet } from 'react-helmet';
+import { withStyles } from '@material-ui/core/styles';
 import ArrowDown from '@material-ui/icons/ArrowDownwardSharp';
 import Typography from '@material-ui/core/Typography';
 import Fab from '@material-ui/core/Fab';
 import Gallery from 'react-grid-gallery';
+import FacebookIcon from '@material-ui/icons/Facebook';
+import PhoneIcon from '@material-ui/icons/Phone';
+import EmailIcon from '@material-ui/icons/Email';
+import Link from '@material-ui/core/Link/Link';
+import { NavLink as RouterLink } from 'react-router-dom';
+import NavBar from '../../components/NavBar';
 
-import { FormattedMessage } from 'react-intl';
-import NavBar from "../../components/NavBar";
-
-const useStyles = makeStyles(theme => ({
+const styles = theme => ({
   picturesContainer: {
     maxWidth: 1200,
     margin: '30px auto',
@@ -30,18 +34,32 @@ const useStyles = makeStyles(theme => ({
     flexDirection: 'column',
     alignItems: 'center',
     marginTop: 150,
+    [theme.breakpoints.down('sm')]: {
+      marginTop: 50,
+    },
   },
   headerTitle: {
     color: '#ffffff',
     fontFamily: 'Montserrat, sans-serif',
     fontSize: '45px',
+    [theme.breakpoints.down('sm')]: {
+      fontSize: '25px',
+      fontWeight: 'bold',
+    },
+  },
+  ReactGridGallery_tile: {
+    marginLeft: 'calc(50% - 135px)',
   },
   headerContainer: {
     height: '550px',
     backgroundSize: 'cover',
     position: 'relative',
     backgroundPositionX: 'center',
-    backgroundImage: 'url("https://i.ibb.co/xYg4k8k/0032-Traiteur-Pamier-Le-bocal-gourmand-38-WEB.jpg")',
+    backgroundImage:
+      'url("https://i.ibb.co/xYg4k8k/0032-Traiteur-Pamier-Le-bocal-gourmand-38-WEB.jpg")',
+    [theme.breakpoints.down('sm')]: {
+      height: '350px',
+    },
   },
   root: {
     display: 'flex',
@@ -51,132 +69,280 @@ const useStyles = makeStyles(theme => ({
       margin: theme.spacing(1),
     },
   },
-}));
-
-export default function GalleryPage() {
-
-  const classes = useStyles();
-
-  const IMAGES =
-    [{
-      src: "https://i.ibb.co/Dwv1t2V/0016-Traiteur-Pamier-Le-bocal-gourmand-22-WEB.jpg",
-      thumbnail: "https://i.ibb.co/Dwv1t2V/0016-Traiteur-Pamier-Le-bocal-gourmand-22-WEB.jpg",
-      thumbnailWidth: "10%",
-      thumbnailHeight: "10%",
-      caption: "After Rain (Jeshu John - designerspics.com)"
+  buttonNav: {
+    backgroundImage: 'linear-gradient(to right , #deaa87, #050f2c) ',
+    margin: '50px',
+    borderRadius: '20px',
+    maxWidth: '400px',
+    color: '#ffffff',
+    fontSize: '22px',
+    fontFamily: 'Roboto, sans-serif',
+    fontWeight: 'bold',
+    padding: '10px',
+    '&:hover': {
+      textDecoration: 'none',
+      filter: 'grayscale(60%)',
     },
+  },
+  questionContainer: {
+    height: '250px',
+    backgroundImage: 'linear-gradient(to right , #1B1B3A, #050f2c) ',
+    display: 'flex',
+    justifyContent: 'center',
+    flexDirection: 'column',
+    alignItems: 'center',
+  },
+  footer: {
+    backgroundColor: '#000000',
+    display: 'flex',
+    justifyContent: 'center',
+    flexDirection: 'column',
+    alignItems: 'center',
+  },
+  footerInfo: {},
+  iconFacebook: {
+    width: 80,
+    height: 80,
+    color: '#d3a476',
+  },
+  containerBody: {
+    display: 'flex',
+    justifyContent: 'center',
+    flexDirection: 'column',
+  },
+});
+
+class GalleryPage extends React.PureComponent {
+  render() {
+    const { classes } = this.props;
+    const IMAGES = [
       {
-        src: "https://i.ibb.co/CVHvFwd/0014-Traiteur-Pamier-Le-bocal-gourmand-20-WEB-1.jpg",
-        thumbnail: "https://i.ibb.co/CVHvFwd/0014-Traiteur-Pamier-Le-bocal-gourmand-20-WEB-1.jpg",
-        thumbnailWidth: "10%",
-        thumbnailHeight: "10%",
-        caption: "Boats (Jeshu John - designerspics.com)"
+        src: '../../img/gallerie.jpg',
+        thumbnail: '../../img/gallerie.jpg',
+        thumbnailWidth: 369,
+        thumbnailHeight: 246,
       },
       {
-        src: "https://scontent-cdt1-1.xx.fbcdn.net/v/t1.0-9/79890532_201530571009146_2331126399353487360_o.jpg?_nc_cat=102&_nc_ohc=2mHGhvzBZqIAQl-9iWg1_5vsoS-GOvdvxrjCVlHvIWlOUvwbIW9rPrOXw&_nc_ht=scontent-cdt1-1.xx&oh=b599740e300f23e446be4d21667f2cd1&oe=5E76D1F7",
-        thumbnail: "https://scontent-cdt1-1.xx.fbcdn.net/v/t1.0-9/79890532_201530571009146_2331126399353487360_o.jpg?_nc_cat=102&_nc_ohc=2mHGhvzBZqIAQl-9iWg1_5vsoS-GOvdvxrjCVlHvIWlOUvwbIW9rPrOXw&_nc_ht=scontent-cdt1-1.xx&oh=b599740e300f23e446be4d21667f2cd1&oe=5E76D1F7",
-        thumbnailWidth: "10%",
-        thumbnailHeight: "10%",
-        caption: "After Rain (Jeshu John - designerspics.com)"
+        src: '../../img/gallerie2.jpg',
+        thumbnail: '../../img/gallerie2.jpg',
+        thumbnailWidth: 340,
+        thumbnailHeight: 150,
       },
       {
-        src: "https://i.ibb.co/PYjTKmY/0027-traiteur-Patrick-Bastide-27-WEB.jpg",
-        thumbnail: "https://i.ibb.co/PYjTKmY/0027-traiteur-Patrick-Bastide-27-WEB.jpg",
-        thumbnailWidth: "10%",
-        thumbnailHeight: "10%",
-        caption: "Boats (Jeshu John - designerspics.com)"
+        src: '../../img/gallerie3.jpg',
+        thumbnail: '../../img/gallerie3.jpg',
+        thumbnailWidth: 369,
+        thumbnailHeight: 246,
       },
       {
-        src: "https://scontent-cdt1-1.xx.fbcdn.net/v/t1.0-9/79150194_201530497675820_799648216738955264_o.jpg?_nc_cat=100&_nc_ohc=O1YEmI_SXlUAQmGw6jzBeI9QxLevuJfG5f9DnXnmr-ef6boJahF2oeNQA&_nc_ht=scontent-cdt1-1.xx&oh=07adbfc86b83f27c0559d20149f2f1ad&oe=5E72A618",
-        thumbnail: "https://scontent-cdt1-1.xx.fbcdn.net/v/t1.0-9/79150194_201530497675820_799648216738955264_o.jpg?_nc_cat=100&_nc_ohc=O1YEmI_SXlUAQmGw6jzBeI9QxLevuJfG5f9DnXnmr-ef6boJahF2oeNQA&_nc_ht=scontent-cdt1-1.xx&oh=07adbfc86b83f27c0559d20149f2f1ad&oe=5E72A618",
-        thumbnailWidth: "10%",
-        thumbnailHeight: "10%",
-        caption: "Boats (Jeshu John - designerspics.com)"
+        src: '../../img/gallerie4.jpg',
+        thumbnail: '../../img/gallerie4.jpg',
+        thumbnailWidth: 340,
+        thumbnailHeight: 150,
       },
       {
-        src: "https://i.ibb.co/ph8Vp6Y/0025-traiteur-Patrick-Bastide-25-WEB.jpg",
-        thumbnail: "https://i.ibb.co/ph8Vp6Y/0025-traiteur-Patrick-Bastide-25-WEB.jpg",
-        thumbnailWidth: "10%",
-        thumbnailHeight: "10%",
-        caption: "After Rain (Jeshu John - designerspics.com)"
+        src: '../../img/gallerie5.jpg',
+        thumbnail: '../../img/gallerie5.jpg',
+        thumbnailWidth: 340,
+        thumbnailHeight: 150,
       },
       {
-        src: "https://i.ibb.co/nBcChBP/0003-traiteur-Patrick-Bastide-3-WEB.jpg",
-        thumbnail: "https://i.ibb.co/nBcChBP/0003-traiteur-Patrick-Bastide-3-WEB.jpg",
-        thumbnailWidth: "10%",
-        thumbnailHeight: "10%",
-        caption: "Boats (Jeshu John - designerspics.com)"
+        src: '../../img/gallerie6.jpg',
+        thumbnail: '../../img/gallerie6.jpg',
+        thumbnailWidth: 369,
+        thumbnailHeight: 246,
       },
       {
-        src: "https://i.ibb.co/ccwhmq6/0004-traiteur-Patrick-Bastide-4-WEB.jpg",
-        thumbnail: "https://i.ibb.co/ccwhmq6/0004-traiteur-Patrick-Bastide-4-WEB.jpg",
-        thumbnailWidth: "10%",
-        thumbnailHeight: "10%",
-        caption: "Boats (Jeshu John - designerspics.com)"
+        src: '../../img/gallerie7.jpg',
+        thumbnail: '../../img/gallerie7.jpg',
+        thumbnailWidth: 369,
+        thumbnailHeight: 246,
       },
       {
-        src: "https://i.ibb.co/sCLTsMC/0015-Traiteur-Pamier-Le-bocal-gourmand-21-WEB.jpg",
-        thumbnail: "https://i.ibb.co/sCLTsMC/0015-Traiteur-Pamier-Le-bocal-gourmand-21-WEB.jpg",
-        thumbnailWidth: "10%",
-        thumbnailHeight: "10%",
-        caption: "After Rain (Jeshu John - designerspics.com)"
+        src: '../../img/gallerie8.jpg',
+        thumbnail: '../../img/gallerie8.jpg',
+        thumbnailWidth: 369,
+        thumbnailHeight: 246,
       },
       {
-        src: "https://i.ibb.co/jhhRQSN/0008-Traiteur-Pamier-Le-bocal-gourmand-14-WEB.jpg",
-        thumbnail: "https://i.ibb.co/jhhRQSN/0008-Traiteur-Pamier-Le-bocal-gourmand-14-WEB.jpg",
-        thumbnailWidth: "10%",
-        thumbnailHeight: "10%",
-        caption: "Boats (Jeshu John - designerspics.com)"
+        src: '../../img/gallerie9.jpg',
+        thumbnail: '../../img/gallerie9.jpg',
+        thumbnailWidth: 370,
+        thumbnailHeight: 245,
       },
       {
-        src: "https://i.ibb.co/j3khyqn/0002-traiteur-Patrick-Bastide-2-WEB.jpg",
-        thumbnail: "https://i.ibb.co/j3khyqn/0002-traiteur-Patrick-Bastide-2-WEB.jpg",
-        thumbnailWidth: "10%",
-        thumbnailHeight: "10%",
-        caption: "Boats (Jeshu John - designerspics.com)"
-      },
-      {
-        src: "https://i.ibb.co/dBtX2FW/0025-Traiteur-Pamier-Le-bocal-gourmand-31-WEB.jpg",
-        thumbnail: "https://i.ibb.co/dBtX2FW/0025-Traiteur-Pamier-Le-bocal-gourmand-31-WEB.jpg",
-        thumbnailWidth: "10%",
-        thumbnailHeight: "10%",
-        caption: "Boats (Jeshu John - designerspics.com)"
+        src: '../../img/gallerie10.jpg',
+        thumbnail: '../../img/gallerie10.jpg',
+        thumbnailWidth: 370,
+        thumbnailHeight: 243,
       },
 
       {
-        src: "https://scontent-cdt1-1.xx.fbcdn.net/v/t1.0-9/79885062_201530677675802_4521778982688915456_o.jpg?_nc_cat=108&_nc_ohc=fWCfePnlgG4AQleP58cHMeWo2M4TvARcVGcJkxQO2xNpzP1Y_aBUhBe6w&_nc_ht=scontent-cdt1-1.xx&oh=e602c04a8bc96ea02cfff4a64ba51b96&oe=5E76E0DD",
-        thumbnail: "https://scontent-cdt1-1.xx.fbcdn.net/v/t1.0-9/79885062_201530677675802_4521778982688915456_o.jpg?_nc_cat=108&_nc_ohc=fWCfePnlgG4AQleP58cHMeWo2M4TvARcVGcJkxQO2xNpzP1Y_aBUhBe6w&_nc_ht=scontent-cdt1-1.xx&oh=e602c04a8bc96ea02cfff4a64ba51b96&oe=5E76E0DD",
-        thumbnailWidth: "10%",
-        thumbnailHeight: "10%"
-      }]
+        src: '../../img/gallerie11.jpg',
+        thumbnail: '../../img/gallerie11.jpg',
+        thumbnailWidth: 369,
+        thumbnailHeight: 246,
+      },
+      {
+        src: '../../img/gallerie12.jpg',
+        thumbnail: '../../img/gallerie12.jpg',
+        thumbnailWidth: 369,
+        thumbnailHeight: 246,
+      },
+      {
+        src: '../../img/gallerie13.jpg',
+        thumbnail: '../../img/gallerie13.jpg',
+        thumbnailWidth: 370,
+        thumbnailHeight: 245,
+      },
+      {
+        src: '../../img/gallerie14.jpg',
+        thumbnail: '../../img/gallerie14.jpg',
+        thumbnailWidth: 370,
+        thumbnailHeight: 243,
+      },
 
-  return (
-    <div>
-      <Helmet>
-        <meta charSet="utf-8" />
-        <title>My Title</title>
-        <link rel="canonical" href="http://mysite.com/example" />
-      </Helmet>
-      <div className={classes.container}>
-        <header className={classes.headerContainer}>
-          <NavBar/>
-          <div className={classes.titleContainer}>
-            <Typography component='h1' className={classes.headerTitle} >
-              DECOUVREZ NOS BOCAUX .
-            </Typography>
+      {
+        src: '../../img/gallerie15.jpg',
+        thumbnail: '../../img/gallerie15.jpg',
+        thumbnailWidth: 369,
+        thumbnailHeight: 246,
+      },
+      {
+        src: '../../img/gallerie16.jpg',
+        thumbnail: '../../img/gallerie16.jpg',
+        thumbnailWidth: 370,
+        thumbnailHeight: 243,
+      },
+
+      {
+        src: '../../img/gallerie17.jpg',
+        thumbnail: '../../img/gallerie17.jpg',
+        thumbnailWidth: 300,
+        thumbnailHeight: 400,
+      },
+    ];
+
+    return (
+      <div>
+        <Helmet>
+          <meta charSet="utf-8" />
+          <link
+            href="https://fonts.googleapis.com/css?family=Cairo&display=swap"
+            rel="stylesheet"
+          />
+          <link
+            href="https://fonts.googleapis.com/css?family=Montserrat&display=swap"
+            rel="stylesheet"
+          />
+          <title>Le bocal gourmand , traiteur à Pamiers</title>
+        </Helmet>
+        <div className={classes.container}>
+          <header className={classes.headerContainer}>
+            <NavBar />
+            <div className={classes.titleContainer}>
+              <Typography
+                component="h1"
+                align="center"
+                className={classes.headerTitle}
+              >
+                DECOUVREZ NOS BOCAUX .
+              </Typography>
+            </div>
+            <div className={classes.arrowContainer}>
+              <Fab style={{ marginTop: 40 }}>
+                <ArrowDown
+                  style={{
+                    backgroundColor: '#d3a476',
+                    color: '#ffffff',
+                    borderRadius: 50,
+                    width: 60,
+                    height: 60,
+                  }}
+                  className={classes.arrow}
+                />
+              </Fab>
+            </div>
+          </header>
+          <div className={classes.containerBody}>
+            <Gallery images={IMAGES} />
+            <div className={classes.questionContainer}>
+              <Typography
+                component="h3"
+                align="center"
+                style={{ color: '#ffffff' }}
+                className={classes.sectionTitle}
+              >
+                Vous souhaitez avoir plus de renseignements ou passer commande ?
+              </Typography>
+              <Link
+                className={classes.buttonNav}
+                component={RouterLink}
+                to="/contact"
+              >
+                Contactez-nous
+              </Link>
+            </div>
+            <div className={classes.footer}>
+              <Link
+                target="_blank"
+                href="https://www.facebook.com/lebocalgourmandtraiteur/"
+              >
+                <FacebookIcon className={classes.iconFacebook} />
+              </Link>
+              <div className={classes.footerInfo}>
+                <PhoneIcon style={{ color: '#d3a476', margin: '5px' }} />
+                <Typography
+                  component="span"
+                  align="center"
+                  style={{ color: '#ffffff' }}
+                  className={classes.footerStyle}
+                >
+                  06 23 46 62 72 || 06 14 41 42 16
+                </Typography>
+              </div>
+              <div className={classes.footerInfo}>
+                <EmailIcon style={{ color: '#d3a476', margin: '5px' }} />
+                <Typography
+                  component="span"
+                  align="center"
+                  style={{ color: '#ffffff' }}
+                  className={classes.footerStyle}
+                >
+                  lebocalgourmand09@gmail.com
+                </Typography>
+              </div>
+            </div>
+            <div
+              style={{
+                backgroundColor: '#d3a476',
+                display: 'flex',
+                justifyContent: 'center',
+              }}
+            >
+              <Typography
+                component="span"
+                align="center"
+                style={{
+                  color: '#ffffff',
+                  fontSize: '10px',
+                  fontWeight: 'bold',
+                  fontFamily: 'Roboto, sans-serif',
+                }}
+              >
+                © Copyright 2020 Le bocal gourmand, traiteur multi-assembleur à
+                Pamiers | © Copyright 2020 Presles Corp.
+              </Typography>
+            </div>
           </div>
-          <div className={classes.arrowContainer}>
-            <Fab style={{ marginTop: 40}} >
-              <ArrowDown style={{backgroundColor: '#ff9955',color: '#ffffff',borderRadius: 50, width: 60, height: 60 }}className={classes.arrow}/>
-            </Fab>
-          </div>
-        </header>
-        <div style={{backgroundColor: '#000000'}}>
-        <div className={classes.picturesContainer}>
-        <Gallery  images={IMAGES}/>
-        </div>
         </div>
       </div>
-    </div>
-  );
+    );
+  }
 }
+
+GalleryPage.propTypes = {
+  classes: PropTypes.object.isRequired,
+};
+
+export default withStyles(styles)(GalleryPage);
