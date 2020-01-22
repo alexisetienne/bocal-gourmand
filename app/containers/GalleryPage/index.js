@@ -246,7 +246,7 @@ class GalleryPage extends React.PureComponent {
                 align="center"
                 className={classes.headerTitle}
               >
-                DECOUVREZ NOS BOCAUX .
+                DECOUVREZ NOS BOCAUX
               </Typography>
             </div>
             <div className={classes.arrowContainer}>

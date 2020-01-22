@@ -70,6 +70,7 @@ const styles = theme => ({
     borderRadius: '30px',
     maxWidth: '400px',
     padding: '20px',
+    opacity: 0.8,
     backgroundColor: '#d3a476',
     [theme.breakpoints.down('sm')]: {
       width: '90%',
@@ -259,7 +260,11 @@ class HomePage extends React.PureComponent {
             <NavBar />
             <div className={classes.headerTitleContainer}>
               <div className={classes.titleContainer}>
-                <Typography component="h1" className={classes.headerTitle}>
+                <Typography
+                  align="center"
+                  component="h1"
+                  className={classes.headerTitle}
+                >
                   LE BOCAL GOURMAND
                 </Typography>
                 <Typography

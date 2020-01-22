@@ -5,6 +5,8 @@ import PropTypes from 'prop-types';
 import Typography from '@material-ui/core/Typography/Typography';
 import FacebookIcon from '@material-ui/icons/Facebook';
 import PhoneIcon from '@material-ui/icons/Phone';
+import ArrowDownwardIcon from '@material-ui/icons/ArrowDownward';
+
 import EmailIcon from '@material-ui/icons/Email';
 import Link from '@material-ui/core/Link/Link';
 import { NavLink as RouterLink } from 'react-router-dom';
@@ -17,7 +19,9 @@ const styles = theme => ({
     backgroundSize: 'cover',
     position: 'relative',
     backgroundPositionX: 'center',
-    backgroundImage: ' url("../../img/tomate.jpeg")',
+    overflowX: 'none',
+    overflowY: 'none',
+    backgroundImage: ' url("../../img/back_menu.jpg")',
     [theme.breakpoints.down('sm')]: {
       height: '300px',
     },
@@ -68,8 +72,8 @@ const styles = theme => ({
     },
   },
   sectionTitle: {
-    color: '#ffffff',
-    fontSize: '17px',
+    color: '#d3a476',
+    fontSize: '26px',
     fontFamily: 'Cairo, sans-serif',
     fontWeight: 'bold',
     marginTop: 10,
@@ -78,7 +82,6 @@ const styles = theme => ({
     },
   },
   textContainer: {
-    backgroundColor: '#d3a476',
     display: 'flex',
     flexDirection: 'column',
     alignItems: 'center',
@@ -122,6 +125,55 @@ const styles = theme => ({
     height: 80,
     color: '#d3a476',
   },
+  starter: {
+    display: 'flex',
+    flexDirection: 'row',
+    [theme.breakpoints.down('sm')]: {
+      flexDirection: 'column',
+    },
+  },
+  boxMenu: {
+    display: 'flex',
+    flexDirection: 'column',
+    alignItems: 'center',
+    margin: 80,
+  },
+  imgTitle: {
+    height: 350,
+    borderRadius: '50px',
+    boxShadow: '15px 15px 10px silver',
+    [theme.breakpoints.down('sm')]: {
+      boxShadow: 'none',
+      borderRadius: '0px',
+      width: '100%',
+    },
+  },
+  lastSection: {
+    display: 'flex',
+    flexDirection: 'row',
+    justifyContent: 'center',
+    alignItems: 'center',
+    [theme.breakpoints.down('sm')]: {
+      flexDirection: 'column',
+    },
+  },
+  imgLast: {
+    width: 600,
+    [theme.breakpoints.down('sm')]: {
+      width: '100%',
+    },
+  },
+  titleLast: {
+    display: 'flex',
+    justifyContent: 'center',
+    margin: 30,
+  },
+  imgDisplay: {
+    width: '50%',
+    [theme.breakpoints.down('sm')]: {
+      width: '100%',
+    },
+  },
 });
 
 class MenuPage extends React.PureComponent {
@@ -149,7 +201,7 @@ class MenuPage extends React.PureComponent {
             <NavBar />
             <div className={classes.titleContainer}>
               <Typography component="h1" className={classes.headerTitle}>
-                Le menu de la semaine .
+                Le menu de la semaine
               </Typography>
             </div>
           </header>
@@ -168,14 +220,40 @@ class MenuPage extends React.PureComponent {
                 />
               </div>
               <div className={classes.textContainer}>
-                <div>
-                  <Typography
-                    component="span"
-                    align="center"
-                    className={classes.sectionTitle}
+                <div className={classes.starter}>
+                  <div
+                    style={{
+                      display: 'flex',
+                      flexDirection: 'column',
+                      alignItems: 'center',
+                      margin: 50,
+                    }}
+                    className={classes.boxMenu}
                   >
-                    Les 3 entrées de la semaine :
-                  </Typography>
+                    <Typography
+                      component="span"
+                      align="center"
+                      className={classes.sectionTitle}
+                    >
+                      Les 3 entrées de la semaine
+                    </Typography>
+                    <ArrowDownwardIcon
+                      style={{
+                        height: '40px',
+                        width: 40,
+                        color: '#ffffff',
+                        backgroundColor: '#050f2c',
+                        borderRadius: '50px',
+                      }}
+                    />
+                  </div>
+                  <div className={classes.imgDisplay}>
+                    <img
+                      className={classes.imgTitle}
+                      src="../../img/entrees-traiteur.jpg"
+                      alt="entrées de la semaine - plateaux repas"
+                    />
+                  </div>
                 </div>
                 <div className={classes.imgContainerRight}>
                   <CardMenuItem
@@ -191,14 +269,40 @@ class MenuPage extends React.PureComponent {
                     title="entrées a definir"
                   />
                 </div>
-                <div>
-                  <Typography
-                    component="span"
-                    align="center"
-                    className={classes.sectionTitle}
+                <div className={classes.starter}>
+                  <div className={classes.imgDisplay}>
+                    <img
+                      className={classes.imgTitle}
+                      src="../../img/plats-traiteur.jpg"
+                      alt="entrées de la semaine - plateaux repas"
+                    />
+                  </div>
+                  <div
+                    style={{
+                      display: 'flex',
+                      flexDirection: 'column',
+                      alignItems: 'center',
+                      margin: 100,
+                    }}
+                    className={classes.boxMenu}
                   >
-                    Les 3 plats de la semaine :
-                  </Typography>
+                    <Typography
+                      component="span"
+                      align="center"
+                      className={classes.sectionTitle}
+                    >
+                      Les 3 plats de la semaine
+                    </Typography>
+                    <ArrowDownwardIcon
+                      style={{
+                        height: '40px',
+                        width: 40,
+                        color: '#ffffff',
+                        backgroundColor: '#050f2c',
+                        borderRadius: '50px',
+                      }}
+                    />
+                  </div>
                 </div>
                 <div className={classes.imgContainerRight}>
                   <CardMenuItem
@@ -214,43 +318,81 @@ class MenuPage extends React.PureComponent {
                     title="entrées a definir"
                   />
                 </div>
-                <div>
-                  <Typography
-                    component="span"
-                    align="center"
-                    className={classes.sectionTitle}
+                <div className={classes.starter}>
+                  <div
+                    style={{
+                      display: 'flex',
+                      flexDirection: 'column',
+                      alignItems: 'center',
+                      margin: 50,
+                    }}
+                    className={classes.boxMenu}
                   >
-                    La salade de la semaine :
-                  </Typography>
+                    <Typography
+                      component="span"
+                      align="center"
+                      className={classes.sectionTitle}
+                    >
+                      Les 3 desserts de la semaine
+                    </Typography>
+                    <ArrowDownwardIcon
+                      style={{
+                        height: '40px',
+                        width: 40,
+                        color: '#ffffff',
+                        backgroundColor: '#050f2c',
+                        borderRadius: '50px',
+                      }}
+                    />
+                  </div>
+                  <div className={classes.imgDisplay}>
+                    <img
+                      className={classes.imgTitle}
+                      src="../../img/desserts-traiteur.jpg"
+                      alt="entrées de la semaine - plateaux repas"
+                    />
+                  </div>
                 </div>
                 <div className={classes.imgContainerRight}>
                   <CardMenuItem
                     img="../../img/gallerie3.jpg"
                     title="entrées a definir"
                   />
+                  <CardMenuItem
+                    img="../../img/gallerie3.jpg"
+                    title="entrées a definir"
+                  />
+                  <CardMenuItem
+                    img="../../img/gallerie3.jpg"
+                    title="entrées a definir"
+                  />
                 </div>
-                <div>
+              </div>
+              <div className={classes.titleLast}>
+                <Typography
+                  component="span"
+                  align="center"
+                  className={classes.sectionTitle}
+                >
+                  La salade de la semaine
+                </Typography>
+              </div>
+              <div className={classes.lastSection}>
+                <div className={classes.boxRight}>
+                  <img
+                    className={classes.imgLast}
+                    src="../../img/salade.jpg"
+                    alt="salade en bocal"
+                  />
+                </div>
+                <div className={classes.boxLeft}>
                   <Typography
                     component="span"
                     align="center"
-                    className={classes.sectionTitle}
+                    style={{ margin: 20 }}
                   >
-                    Les 3 desserts de la semaine :
+                    salade nicoise au choux fleurs
                   </Typography>
-                </div>
-                <div className={classes.imgContainerRight}>
-                  <CardMenuItem
-                    img="../../img/gallerie3.jpg"
-                    title="entrées a definir"
-                  />
-                  <CardMenuItem
-                    img="../../img/gallerie3.jpg"
-                    title="entrées a definir"
-                  />
-                  <CardMenuItem
-                    img="../../img/gallerie3.jpg"
-                    title="entrées a definir"
-                  />
                 </div>
               </div>
             </div>
