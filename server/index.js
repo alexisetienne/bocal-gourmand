@@ -6,7 +6,7 @@ const logger = require('./logger');
 const bodyParser = require('body-parser');
 const nodemailer = require('nodemailer');
 const argv = require('./argv');
-const port = process.env.PORT || 5000;
+const port = require('./port');
 const setup = require('./middlewares/frontendMiddleware');
 const isDev = process.env.NODE_ENV !== 'production';
 const ngrok =
