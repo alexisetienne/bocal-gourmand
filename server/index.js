@@ -70,18 +70,18 @@ app.post('/contact', (req, res) => {
 
   // create reusable transporter object using the default SMTP transport
   const transporter = nodemailer.createTransport({
-    host: 'smtp.ethereal.email',
-    port: 587,
+    host: 'smtp.live.com',
+    port: 25,
     auth: {
-      user: 'merl36@ethereal.email',
-      pass: 'zVT4yMgv8ph55jvK4X',
+      user: 'alexisetienne2010@live.fr',
+      pass: 'etienne0290',
     },
   });
 
   // setup email data with unicode symbols
   const mailOptions = {
-    from: 'merl36@ethereal.email', // sender address
-    to: 'alexisetienne2010@live.fr', // list of receivers
+    from: 'alexisetienne2010@live.fr', // sender address
+    to: 'alexisetienne86@gmail.com', // list of receivers
     subject: 'Message client site web', // Subject line
     html: output, // html body
   };
