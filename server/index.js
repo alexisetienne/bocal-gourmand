@@ -123,7 +123,6 @@ app.listen(process.env.PORT, process.env.IP, port, host, async err => {
   }
 });
 
-// public directory setup
 //  starts a UNIX socket and listens for connections on the given path
 // app.listen(process.env.PORT, process.env.IP, () => {
 //   console.log('Server has started...');
