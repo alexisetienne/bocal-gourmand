@@ -70,16 +70,11 @@ app.post('/contact', (req, res) => {
 
   // create reusable transporter object using the default SMTP transport
   const transporter = nodemailer.createTransport({
-    service: 'gmail',
-    host: 'smtp.gmail.com',
-    port: 465,
-    secure: false,
+    host: 'smtp.ethereal.email',
+    port: 587,
     auth: {
-      user: 'alexisetienne86@gmail.com', // could use generated ethereal user
-      pass: 'etienne0290', // could use generated ethereal password
-    },
-    tls: {
-      rejectUnauthorized: false,
+      user: 'merl36@ethereal.email',
+      pass: 'zVT4yMgv8ph55jvK4X',
     },
   });
 
