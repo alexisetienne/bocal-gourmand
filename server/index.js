@@ -71,7 +71,7 @@ app.post('/contact', (req, res) => {
   // create reusable transporter object using the default SMTP transport
   const transporter = nodemailer.createTransport({
     host: 'smtp.live.com',
-    port: 25,
+    port: 587,
     auth: {
       user: 'alexisetienne2010@live.fr',
       pass: 'etienne0290',
