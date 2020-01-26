@@ -70,18 +70,17 @@ app.post('/contact', (req, res) => {
 
   // create reusable transporter object using the default SMTP transport
   const transporter = nodemailer.createTransport({
-    host: 'smtp.live.com',
-    port: 587,
+    service: 'gmail',
     auth: {
-      user: 'alexisetienne2010@live.fr',
+      user: 'alexisetienne86@gmail.com',
       pass: 'etienne0290',
     },
   });
 
   // setup email data with unicode symbols
   const mailOptions = {
-    from: 'alexisetienne2010@live.fr', // sender address
-    to: 'alexisetienne86@gmail.com', // list of receivers
+    from: 'alexisetienne86@gmail.com', // sender address
+    to: 'alexisetienne2010@live.fr', // list of receivers
     subject: 'Message client site web', // Subject line
     html: output, // html body
   };
