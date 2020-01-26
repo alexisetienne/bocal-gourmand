@@ -73,14 +73,14 @@ app.post('/contact', (req, res) => {
     host: 'smtp.gmail.com',
     port: 465,
     auth: {
-      user: 'alexisetienne86@gmail.com', // could use generated ethereal user
-      pass: 'etienne0290', // could use generated ethereal password
+      user: 'ludivine.quantin@gmail.com', // could use generated ethereal user
+      pass: 'jordan28072011', // could use generated ethereal password
     },
   });
 
   // setup email data with unicode symbols
   const mailOptions = {
-    from: 'alexisetienne86@gmail.com', // sender address
+    from: 'ludivine.quantin@gmail.com', // sender address
     to: 'alexisetienne2010@live.fr', // list of receivers
     subject: 'Message client site web', // Subject line
     html: output, // html body
