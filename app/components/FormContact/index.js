@@ -107,18 +107,9 @@ class FormContact extends React.Component {
 
     axios({
       method: 'POST',
-      url: 'http://localhost:3000/contact',
+      url: 'https://bocal-gourmand.herokuapp.com/contact',
       data: this.state,
     }).then(response => {
-      {
-        console.log(response);
-      }
-      {
-        console.log(response.data.status);
-      }
-      {
-        console.log(response.data.status);
-      }
       if (response.statusText === 'OK') {
         this.setState({ openSuccess: true });
         this.resetForm();
@@ -143,7 +134,6 @@ class FormContact extends React.Component {
 
     return (
       <ValidatorForm
-        ref="form"
         onSubmit={this.handleSubmit}
         onError={errors => console.log(errors)}
         className={classes.formContainer}
