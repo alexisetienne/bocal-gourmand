@@ -123,8 +123,3 @@ app.post('/contact', (req, res) => {
     res.redirect('/contact');
   });
 });
-
-//  starts a UNIX socket and listens for connections on the given path
-app.listen(process.env.PORT, process.env.IP, () => {
-  console.log('Server has started...');
-});
