@@ -71,11 +71,11 @@ app.post('/contact', (req, res) => {
   // create reusable transporter object using the default SMTP transport
   const transporter = nodemailer.createTransport({
     service: 'gmail',
-    host: 'smtp.live.com',
+    host: 'smtp.gmail.com',
     port: 465,
     secure: 'true',
     auth: {
-      user: 'alexisetienne2010@live.fr', // could use generated ethereal user
+      user: 'alexisetienne86@gmail.com', // could use generated ethereal user
       pass: 'etienne0290', // could use generated ethereal password
     },
     tls: {
@@ -104,7 +104,7 @@ app.post('/contact', (req, res) => {
 });
 
 // Start your app.
-app.listen(port, host, async err => {
+app.listen(process.env.PORT, process.env.IP, port, host, async err => {
   if (err) {
     return logger.error(err.message);
   }
