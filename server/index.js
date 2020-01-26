@@ -37,27 +37,6 @@ app.get('*.js', (req, res, next) => {
   next();
 });
 
-// Start your app.
-app.listen(port, host, async err => {
-  if (err) {
-    return logger.error(err.message);
-  }
-
-  // Connect to ngrok in dev mode
-  if (ngrok) {
-    let url;
-    try {
-      url = await ngrok.connect(port);
-    } catch (e) {
-      return logger.error(e);
-    }
-    logger.appStarted(port, prettyHost, url);
-  } else {
-    logger.appStarted(port, prettyHost);
-  }
-});
-
-// public directory setup
 app.use('/public', express.static(path.join(__dirname, 'public')));
 
 // body-parser middleware
@@ -123,3 +102,29 @@ app.post('/contact', (req, res) => {
     res.redirect('/contact');
   });
 });
+
+// Start your app.
+app.listen(process.env.PORT, process.env.IP, port, host, async err => {
+  if (err) {
+    return logger.error(err.message);
+  }
+
+  // Connect to ngrok in dev mode
+  if (ngrok) {
+    let url;
+    try {
+      url = await ngrok.connect(port);
+    } catch (e) {
+      return logger.error(e);
+    }
+    logger.appStarted(port, prettyHost, url);
+  } else {
+    logger.appStarted(port, prettyHost);
+  }
+});
+
+// public directory setup
+//  starts a UNIX socket and listens for connections on the given path
+// app.listen(process.env.PORT, process.env.IP, () => {
+//   console.log('Server has started...');
+// });
