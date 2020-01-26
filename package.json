@@ -14,7 +14,6 @@
   "author": "Le bocal gourmand",
   "license": "MIT",
   "scripts": {
-    "web": "npm run start:prod",
     "analyze:clean": "rimraf stats.json",
     "preanalyze": "npm run analyze:clean",
     "analyze": "node ./internals/scripts/analyze.js",
@@ -24,7 +23,7 @@
     "prebuild": "npm run build:clean",
     "build": "cross-env NODE_ENV=production webpack --config internals/webpack/webpack.prod.babel.js --color -p --progress --hide-modules --display-optimization-bailout",
     "build:clean": "rimraf ./build",
-    "start": "cross-env NODE_ENV=development node server",
+    "start": "cross-env NODE_ENV=production node server",
     "start:tunnel": "cross-env NODE_ENV=development ENABLE_TUNNEL=true node server",
     "start:production": "npm run test && npm run build && npm run start:prod",
     "start:prod": "cross-env NODE_ENV=production node server",
