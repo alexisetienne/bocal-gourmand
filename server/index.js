@@ -80,7 +80,7 @@ app.post('/contact', (req, res) => {
 
   // setup email data with unicode symbols
   const mailOptions = {
-    from: 'alexisetienne86@gmail.com', // sender address
+    from: 'merl36@ethereal.email', // sender address
     to: 'alexisetienne2010@live.fr', // list of receivers
     subject: 'Message client site web', // Subject line
     html: output, // html body
