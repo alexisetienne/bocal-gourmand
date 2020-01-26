@@ -73,7 +73,7 @@ app.post('/contact', (req, res) => {
     service: 'gmail',
     host: 'smtp.gmail.com',
     port: 465,
-    secure: 'true',
+    secure: false,
     auth: {
       user: 'alexisetienne86@gmail.com', // could use generated ethereal user
       pass: 'etienne0290', // could use generated ethereal password
