@@ -104,7 +104,7 @@ app.post('/contact', (req, res) => {
 });
 
 // Start your app.
-app.listen(process.env.PORT, process.env.IP, port, host, async err => {
+app.listen(port, host, async err => {
   if (err) {
     return logger.error(err.message);
   }
