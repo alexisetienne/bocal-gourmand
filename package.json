@@ -247,5 +247,12 @@
     "webpack-hot-middleware": "2.24.3",
     "webpack-pwa-manifest": "4.0.0",
     "whatwg-fetch": "3.0.0"
+  },
+  "bugs": {
+    "url": "https://github.com/react-boilerplate/react-boilerplate/issues"
+  },
+  "main": ".eslintrc.js",
+  "directories": {
+    "doc": "docs"
   }
 }
