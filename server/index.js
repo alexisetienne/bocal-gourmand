@@ -37,6 +37,27 @@ app.get('*.js', (req, res, next) => {
   next();
 });
 
+// Start your app.
+app.listen(port, host, async err => {
+  if (err) {
+    return logger.error(err.message);
+  }
+
+  // Connect to ngrok in dev mode
+  if (ngrok) {
+    let url;
+    try {
+      url = await ngrok.connect(port);
+    } catch (e) {
+      return logger.error(e);
+    }
+    logger.appStarted(port, prettyHost, url);
+  } else {
+    logger.appStarted(port, prettyHost);
+  }
+});
+
+// public directory setup
 app.use('/public', express.static(path.join(__dirname, 'public')));
 
 // body-parser middleware
@@ -70,17 +91,22 @@ app.post('/contact', (req, res) => {
 
   // create reusable transporter object using the default SMTP transport
   const transporter = nodemailer.createTransport({
+    service: 'gmail',
     host: 'smtp.gmail.com',
     port: 465,
+    secure: 'true',
     auth: {
-      user: 'ludivine.quantin@gmail.com', // could use generated ethereal user
-      pass: 'jordan28072011', // could use generated ethereal password
+      user: 'alexisetienne86@gmail.com', // could use generated ethereal user
+      pass: 'etienne0290', // could use generated ethereal password
+    },
+    tls: {
+      rejectUnauthorized: false,
     },
   });
 
   // setup email data with unicode symbols
   const mailOptions = {
-    from: 'ludivine.quantin@gmail.com', // sender address
+    from: 'alexisetienne86@gmail.com', // sender address
     to: 'alexisetienne2010@live.fr', // list of receivers
     subject: 'Message client site web', // Subject line
     html: output, // html body
@@ -98,27 +124,7 @@ app.post('/contact', (req, res) => {
   });
 });
 
-// Start your app.
-app.listen(port, host, async err => {
-  if (err) {
-    return logger.error(err.message);
-  }
-
-  // Connect to ngrok in dev mode
-  if (ngrok) {
-    let url;
-    try {
-      url = await ngrok.connect(port);
-    } catch (e) {
-      return logger.error(e);
-    }
-    logger.appStarted(port, prettyHost, url);
-  } else {
-    logger.appStarted(port, prettyHost);
-  }
-});
-
 //  starts a UNIX socket and listens for connections on the given path
-// app.listen(process.env.PORT, process.env.IP, () => {
-//   console.log('Server has started...');
-// });
+app.listen(process.env.PORT, process.env.IP, () => {
+  console.log('Server has started...');
+});

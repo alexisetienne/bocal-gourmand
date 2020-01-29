@@ -107,7 +107,7 @@ class FormContact extends React.Component {
 
     axios({
       method: 'POST',
-      url: 'https://bocal-gourmand.herokuapp.com/contact',
+      url: '/contact',
       data: this.state,
     }).then(response => {
       if (response.statusText === 'OK') {
